@@ -1,6 +1,6 @@
 #!/bin/sh
 
-apt update && apt upgrade
+apt update && apt upgrade -y
 # Install Apache for cacti
 apt install apache2
 systemctl enable --now apache2
