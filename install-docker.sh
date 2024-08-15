@@ -15,8 +15,7 @@ echo \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   tee /etc/apt/sources.list.d/docker.list > /dev/null
 apt-get update
-
-apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin < /dev/null
 
 usermod -aG docker ${USER}
 
