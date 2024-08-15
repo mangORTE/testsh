@@ -48,10 +48,11 @@ docker run \
   --volume jenkins-docker-certs:/certs/client:ro \
   myjenkins-blueocean:2.462.1-1 
 
+sleep 5
+
 docker cp jenkins-blueocean:/var/jenkins_home/secrets/initialAdminPassword .
 initialAdminPassword=$(cat initialAdminPassword)
 rm initialAdminPassword
-
  
 echo "######################## INSTALATION COMPLATE ####################################"
 echo "Browse to http://localhost:8080"
