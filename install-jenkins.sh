@@ -49,7 +49,7 @@ docker run \
   myjenkins-blueocean:2.462.1-1 
 
 echo "Waiting for 10 second ......."
-sleep 10
+sleep 15
 
 docker cp jenkins-blueocean:/var/jenkins_home/secrets/initialAdminPassword .
  
