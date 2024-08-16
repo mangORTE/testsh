@@ -48,16 +48,30 @@ docker run \
   --volume jenkins-docker-certs:/certs/client:ro \
   myjenkins-blueocean:2.462.1-1 
 
-echo "Waiting for 10 second ......."
-sleep 15
+function get_initialAdminPassword {
+    local loading_animation=( '—' "\\" '|' '/' )
+    echo -n "LOADING"
+    # This part is to make the cursor not blink
+    # on top of the animation while it lasts
+    tput civis
+    trap "tput cnorm" EXIT
+    until docker cp jenkins-blueocean:/var/jenkins_home/secrets/initialAdminPassword . 2> /dev/null; do
+        for frame in "${loading_animation[@]}" ; do
+            printf "%s\b" "${frame}"
+            sleep 0.25
+        done
+    done
+    printf " \b\n"
+}
+get_initialAdminPassword
 
-docker cp jenkins-blueocean:/var/jenkins_home/secrets/initialAdminPassword .
+# docker cp jenkins-blueocean:/var/jenkins_home/secrets/initialAdminPassword .
  
 echo "######################## INSTALATION COMPLATE ####################################"
 echo "Browse to http://localhost:8080"
 echo "Your initial Admin Password is "
 cat initialAdminPassword
-# cleanshing
+# cleanup
 rm initialAdminPassword
 rm Dockerfile
   
