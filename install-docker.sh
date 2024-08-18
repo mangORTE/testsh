@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 # source : https://docs.docker.com/engine/install/ubuntu/
 # eq -> sudo bash install-docker.sh
 
